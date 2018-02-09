@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {HttpErrorResponse} from '@angular/common/http';
+import {LoginPage} from '../login/login';
+import {MediaProvider} from '../../providers/media/media';
 
 @Component({
   selector: 'page-list',
@@ -7,10 +10,11 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ListPage {
   selectedItem: any;
+  filesArray: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -25,6 +29,25 @@ export class ListPage {
         note: 'This is item #' + i,
         icon: this.icons[Math.floor(Math.random() * this.icons.length)]
       });
+    }
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ProfilePage');
+    if (localStorage.getItem('token') != null) {
+      this.mediaProvider.getUserData().subscribe(response => {
+        console.log('Welcome ' + response['full_name']);
+        this.mediaProvider.getNewFiles().subscribe(response => {
+          console.log(response);
+          this.filesArray = response;
+        });
+      }, (error: HttpErrorResponse) => {
+        console.log(error);
+        //this.router.navigate(['login']);
+        this.navCtrl.setRoot(LoginPage)
+      });
+    } else {
+      //this.router.navigate(['login']);
+      this.navCtrl.setRoot(LoginPage);
     }
   }
 

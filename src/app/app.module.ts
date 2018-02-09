@@ -12,6 +12,7 @@ import { MediaProvider } from '../providers/media/media';
 import {ProfilePage} from '../pages/profile/profile';
 import {LoginPage} from '../pages/login/login';
 import {RegisterPage} from '../pages/register/register';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {RegisterPage} from '../pages/register/register';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,7 +41,8 @@ import {RegisterPage} from '../pages/register/register';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MediaProvider
+    MediaProvider,
+    HttpClient
   ]
 })
 export class AppModule {}

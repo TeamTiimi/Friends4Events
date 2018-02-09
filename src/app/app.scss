@@ -9,6 +9,16 @@
   float: right;
 }
 
+#logo {
+  float: right;
+}
+
+ion-header {
+  .toolbar-background {
+    background-color: $color-light-blue3;
+  }
+}
+
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
