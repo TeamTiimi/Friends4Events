@@ -23,6 +23,7 @@
         <ion-card-content class="cardcontent">
           <ion-card-title>
             {{files.title}}
+            <input type="hidden" #var [value]="files.file_id">
           </ion-card-title>
           <p class="ellipsis">
             {{files.description}}The most popular industrial group ever, and largely

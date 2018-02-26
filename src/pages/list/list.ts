@@ -48,6 +48,7 @@ export class ListPage {
         this.mediaProvider.getNewFiles().subscribe(response => {
           console.log(response);
           this.filesArray = response;
+          console.log(this.mediaProvider.getUserByFileId(55))
         });
       }, (error: HttpErrorResponse) => {
         console.log(error);

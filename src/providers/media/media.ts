@@ -15,7 +15,7 @@ export class MediaProvider {
   username: string;
   password: string;
   status: string;
-  apiUrl: 'http://media.mw.metropolia.fi/wbma';
+  apiUrl = 'http://media.mw.metropolia.fi/wbma';
   nav = this.app.getActiveNav();
 
   constructor(private http: HttpClient, public app: App) {
@@ -34,7 +34,7 @@ export class MediaProvider {
     const settings = {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     };
-    this.http.post('http://media.mw.metropolia.fi/wbma/login', body, settings).
+    this.http.post(this.apiUrl + '/login', body, settings).
       subscribe(response => {
         console.log(response['token']);
         localStorage.setItem('token', response['token']);
@@ -47,7 +47,7 @@ export class MediaProvider {
   }
 
   register(user) {
-    return this.http.post('http://media.mw.metropolia.fi/wbma/users', user);
+    return this.http.post(this.apiUrl + '/users', user);
   }
 
   getUserData() {
@@ -56,7 +56,7 @@ export class MediaProvider {
         localStorage.getItem('token')),
     };
 
-    return this.http.get('http://media.mw.metropolia.fi/wbma/users/user',
+    return this.http.get(this.apiUrl + '/users/user',
       settings);
   }
 
@@ -66,12 +66,16 @@ export class MediaProvider {
         localStorage.getItem('token')),
     };
 
-    return this.http.post('http://media.mw.metropolia.fi/wbma/media', formData,
+    return this.http.post(this.apiUrl + '/media', formData,
       settings);
   }
 
   getNewFiles() {
-    return this.http.get('http://media.mw.metropolia.fi/wbma/media?start=10&limit=10');
+    return this.http.get(this.apiUrl + '/media?start=10&limit=10');
+  }
+
+  getUserByFileId(fileId){
+    return this.http.get(this.apiUrl + '/media/' + fileId);
   }
 
 }
