@@ -34,7 +34,7 @@ export class ListPage {
 
     // Let's populate this page with some filler content for funzies
 
-    this.initializeItems();
+
   }
 
   getItems(ev: any) {
@@ -44,15 +44,26 @@ export class ListPage {
     let val = ev.target.value;
 
     if (val && val.trim() != '') {
+
       this.searchItems = this.searchItems.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        console.log(item.title);
+        return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
       });
     }
   }
 
+
   initializeItems() {
-    this.searchItems;
-  };
+    this.searchItems = this.filesArray;
+/*
+    this.searchItems = [];
+    this.filesArray.forEach(file => {
+      this.searchItems.push({title: file.title});
+      console.log(file.title);
+      console.log(this.searchItems);
+    });
+*/
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
@@ -63,13 +74,7 @@ export class ListPage {
           console.log(response);
           this.filesArray = response;
 
-          console.log('Title list:');
-          this.searchItems = [];
-          this.filesArray.forEach(file => {
-            this.searchItems.push(file.title);
-            console.log(file.title);
-          });
-
+          this.initializeItems();
         });
       }, (error: HttpErrorResponse) => {
         console.log(error);
