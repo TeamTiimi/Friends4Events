@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content>
+
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-dropdown"
                            pullingText="Pull to refresh"
@@ -16,6 +17,15 @@
     </ion-refresher-content>
   </ion-refresher>
 
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+
+  <ion-list>
+    <ion-item *ngFor="let item of searchItems">
+      {{item}}
+    </ion-item>
+  </ion-list>
+
+  <!--
   <ion-list *ngFor="let files of filesArray" (click)="itemTapped($event, item)">
 
       <ion-card class="flexcard">
@@ -86,6 +96,7 @@
         </ion-card-content>
       </ion-card>
   </ion-list>
+  -->
   <!--ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-icon [name]="item.icon" item-start></ion-icon>
