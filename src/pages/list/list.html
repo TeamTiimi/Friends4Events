@@ -8,19 +8,85 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <img class="image" src="../assets/imgs/image(1).png"/>
-    <ion-card-content>
-      <ion-card-title>
-        Nine Inch Nails Live
-      </ion-card-title>
-      <p>
-        The most popular industrial group ever, and largely
-        responsible for bringing the music to a mass audience.
-      </p>
-    </ion-card-content>
-  </ion-card>
-  <ion-list>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown"
+                           pullingText="Pull to refresh"
+                           refreshingSpinner="circles"
+                           refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngFor="let files of filesArray" (click)="itemTapped($event, item)">
+
+      <ion-card class="flexcard">
+        <img class="image" src="http://media.mw.metropolia.fi/wbma/uploads/{{files.filename.split('.')[0]+'-tn320.png'}}"/>
+        <ion-card-content class="cardcontent">
+          <ion-card-title>
+            {{files.title}}
+          </ion-card-title>
+          <p class="ellipsis">
+            {{files.description}}The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.
+          </p>
+        </ion-card-content>
+      </ion-card>
+  </ion-list>
+  <!--ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-icon [name]="item.icon" item-start></ion-icon>
       {{item.title}}
@@ -31,13 +97,5 @@
   </ion-list>
   <div *ngIf="selectedItem" padding>
     You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
-  <div>
-    <ul>
-      <li *ngFor="let files of filesArray">
-        <img src="http://media.mw.metropolia.fi/wbma/uploads/{{files.filename.split('.')[0]+'-tn320.png'}}">
-        <p>{{files.title}}</p>
-      </li>
-    </ul>
-  </div>
+  </div-->
 </ion-content>

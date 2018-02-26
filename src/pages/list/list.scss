@@ -2,9 +2,26 @@ page-list {
 
 }
 
+.flexcard {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .image {
   width: 30%;
   height: 30%;
+}
+
+.cardcontent {
+  width: 70%;
+}
+
+.ellipsis {
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  height: 30rem;
+  -webkit-box-orient: vertical;
 }
 
 @media screen and (max-width: 460px) {
@@ -12,4 +29,10 @@ page-list {
     width: 100%;
     height: 70%;
   }
+
+  .cardcontent {
+    width: 100%;
+  }
+
+
 }

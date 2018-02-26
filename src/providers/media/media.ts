@@ -1,5 +1,7 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {HomePage} from '../../pages/home/home';
+import {App} from 'ionic-angular';
 
 /*
   Generated class for the MediaProvider provider.
@@ -14,13 +16,14 @@ export class MediaProvider {
   password: string;
   status: string;
   apiUrl: 'http://media.mw.metropolia.fi/wbma';
+  nav = this.app.getActiveNav();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public app: App) {
   }
 
   public login() {
     console.log('uname: ' + this.username);
-    console.log('pwd ' + this.password);
+    console.log('pwd: ' + this.password);
 
     const body = {
       username: this.username,
@@ -36,6 +39,7 @@ export class MediaProvider {
         console.log(response['token']);
         localStorage.setItem('token', response['token']);
         //this.router.navigate(['front']);
+        this.nav.setRoot(HomePage);
       }, (error: HttpErrorResponse) => {
         console.log(error.error.message);
         this.status = error.error.message;

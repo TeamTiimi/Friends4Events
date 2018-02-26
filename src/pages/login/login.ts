@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, Nav, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {MediaProvider} from '../../providers/media/media';
 import {HttpErrorResponse} from '@angular/common/http';
 import {HomePage} from '../home/home';
@@ -17,7 +17,6 @@ import {HomePage} from '../home/home';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  homepage = HomePage;
 
   username: string;
   password: string;
