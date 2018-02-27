@@ -1,5 +1,5 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HomePage} from '../../pages/home/home';
 import {App} from 'ionic-angular';
 
@@ -34,6 +34,7 @@ export class MediaProvider {
     const settings = {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
     };
+
     this.http.post(this.apiUrl + '/login', body, settings).
       subscribe(response => {
         console.log(response['token']);
@@ -71,7 +72,29 @@ export class MediaProvider {
   }
 
   getNewFiles() {
-    return this.http.get(this.apiUrl + '/media?start=10&limit=10');
+    return this.http.get(this.apiUrl + '/media?start=&limit=10');
   }
 
+  like(file_id: number) {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+
+    const body = {
+      file_id: file_id,
+    };
+
+    this.http.post(this.apiUrl + '/favourites', body, settings).
+      subscribe(response => {
+        console.log(response);
+      }, (error: HttpErrorResponse) => {
+        console.log(error.error.message);
+        this.status = error.error.message;
+      });
+  }
+
+  getLikesByFileId(id) {
+    return this.http.get(this.apiUrl + '/favourites/file/' + id);
+  }
 }

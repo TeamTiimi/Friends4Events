@@ -11,11 +11,13 @@ import {MediaProvider} from '../../providers/media/media';
 export class ListPage {
   selectedItem: any;
   filesArray: any;
-  icons: string[];
-  items: Array<{ title: string, note: string, icon: string }>;
-
-  searchQuery: string = '';
   searchItems: any;
+  likes: any;
+  amountOfLikes: any = [];
+  //icons: string[];
+  //items: Array<{ title: string, note: string, icon: string }>;
+
+  //searchQuery: string = '';
 
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
@@ -34,7 +36,6 @@ export class ListPage {
 
     // Let's populate this page with some filler content for funzies
 
-
   }
 
   getItems(ev: any) {
@@ -52,17 +53,17 @@ export class ListPage {
     }
   }
 
-
   initializeItems() {
     this.searchItems = this.filesArray;
-/*
-    this.searchItems = [];
+  }
+
+  getLikes() {
     this.filesArray.forEach(file => {
-      this.searchItems.push({title: file.title});
-      console.log(file.title);
-      console.log(this.searchItems);
+      this.mediaProvider.getLikesByFileId(file.file_id).subscribe(response => {
+        this.amountOfLikes.push({like: response});
+        console.log(this.amountOfLikes);
+      })
     });
-*/
   }
 
   ionViewDidLoad() {
@@ -71,10 +72,12 @@ export class ListPage {
       this.mediaProvider.getUserData().subscribe(response => {
         console.log('Welcome ' + response['full_name']);
         this.mediaProvider.getNewFiles().subscribe(response => {
-          console.log(response);
+          //console.log(response);
           this.filesArray = response;
 
           this.initializeItems();
+
+          this.getLikes();
         });
       }, (error: HttpErrorResponse) => {
         console.log(error);

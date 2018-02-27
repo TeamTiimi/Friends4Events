@@ -30,10 +30,16 @@
           </ion-card-title>
           <p class="ellipsis">
             {{item.description}}
+            {{item.file_id}}
           </p>
+          <button ion-button (click)="mediaProvider.like(item.file_id)">Like</button>
+          <p>Likes: </p>
         </ion-card-content>
       </ion-card>
     </ion-item>
+  </ion-list>
+  <ion-list *ngFor="let likes of amountOfLikes">
+    <p>SuperLikes: {{likes.like.length}}</p>
   </ion-list>
 
   <!--
