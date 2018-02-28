@@ -94,6 +94,24 @@ export class MediaProvider {
     return this.http.get(this.apiUrl + '/comments/file/' + fileId);
   }
 
+  like(file_id: number) {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+
+    const body = {
+      file_id: file_id,
+    };
+
+    this.http.post(this.apiUrl + '/favourites', body, settings).
+      subscribe(response => {
+        console.log(response);
+      }, (error: HttpErrorResponse) => {
+        console.log(error.error.message);
+      });
+  }
+
   getLikesByFileId (fileid){
     return this.http.get(this.apiUrl + '/favourites/file/' + fileid)
   }
