@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {MediaProvider} from '../../providers/media/media';
 import {HttpErrorResponse} from '@angular/common/http';
 import {User} from '../../interfaces/user';
+import {LoginPage} from '../login/login';
 
 
 /**
@@ -36,7 +37,7 @@ export class RegisterPage {
       console.log(response);
       this.mediaProvider.username = this.user.username;
       this.mediaProvider.password = this.user.password;
-      //this.mediaProvider.login();
+      this.navCtrl.setRoot(LoginPage);
     }, (error: HttpErrorResponse) => {
       console.log(error);
     });

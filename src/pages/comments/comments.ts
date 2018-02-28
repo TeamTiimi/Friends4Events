@@ -46,9 +46,7 @@ export class CommentsPage {
   postNewComment(){
     this.mediaProvider.commentEvent(this.comment).subscribe(response => {
       console.log(response);
-
-      //this.mediaProvider.username = this.user.username;
-      //this.mediaProvider.password = this.user.password;
+      location.reload();
     });
   }
 

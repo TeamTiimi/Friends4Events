@@ -27,6 +27,8 @@ export class EventPage {
   likes: any;
   likeamount: any;
   isLiked: boolean = true;
+  comments: any;
+  commentsAmount: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
     this.fileID = navParams.get('file_id');
@@ -60,11 +62,20 @@ export class EventPage {
     console.log(this.fileName);
     this.getUsernameByUserID();
     this.getLikesByFileID();
+    this.getCommentsAmountByFileId();
   }
 
   itemTapped(event) {
     this.navCtrl.push(CommentsPage, {
       file_id: this.fileID
+    });
+  }
+
+  getCommentsAmountByFileId () {
+    this.mediaProvider.getCommentsByFileId(this.fileID).subscribe(response => {
+      console.log(response);
+      this.comments = response;
+      this.commentsAmount = this.comments.length;
     });
   }
 
