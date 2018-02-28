@@ -1,7 +1,7 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {HomePage} from '../../pages/home/home';
-import {App} from 'ionic-angular';
+import {App, NavController} from 'ionic-angular';
 
 /*
   Generated class for the MediaProvider provider.
@@ -110,6 +110,7 @@ export class MediaProvider {
     this.http.post(this.apiUrl + '/favourites', body, settings).
       subscribe(response => {
         console.log(response);
+        this.isLiked = true;
       }, (error: HttpErrorResponse) => {
         console.log(error.error.message);
       });
@@ -123,11 +124,26 @@ export class MediaProvider {
     this.http.delete(this.apiUrl + '/favourites/file/' + file_id, settings).
       subscribe(response => {
         console.log(response);
+        this.isLiked = false;
+      }, (error: HttpErrorResponse) => {
+        console.log(error.error.message);
       });
   }
 
   getLikesByFileId(fileid) {
     return this.http.get(this.apiUrl + '/favourites/file/' + fileid);
+  }
+
+  getAllLikes() {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+    this.http.get(this.apiUrl + '/favourites', settings).subscribe(response => {
+      console.log(response);
+    }, (error: HttpErrorResponse) => {
+      console.log(error.error.message);
+    });
   }
 
 }

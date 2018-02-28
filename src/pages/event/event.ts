@@ -26,7 +26,7 @@ export class EventPage {
   timeAdded: any;
   likes: any;
   likeamount: any;
-  isLiked: any;
+  //isLiked: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
     this.fileID = navParams.get('file_id');
@@ -35,6 +35,7 @@ export class EventPage {
     this.userID = this.navParams.get('user_id');
     this.fileName = this.navParams.get('filename');
     this.timeAdded = this.navParams.get('time_added');
+    //this.isLiked = this.navParams.get('liked');
   }
 
   getUsernameByUserID(){
