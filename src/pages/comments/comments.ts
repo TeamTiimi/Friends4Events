@@ -18,6 +18,7 @@ import {Comment} from '../../interfaces/comment';
 export class CommentsPage {
 
   fileID: number;
+  commentsArray: any;
 
   comment: Comment = {
     file_id: null,
@@ -32,11 +33,13 @@ export class CommentsPage {
     console.log('ionViewDidLoad CommentsPage');
     this.comment.file_id = this.fileID;
     console.log(this.fileID);
+    this.getCommentsByFileId();
   }
 
   getCommentsByFileId () {
     this.mediaProvider.getCommentsByFileId(this.fileID).subscribe(response => {
       console.log(response);
+      this.commentsArray = response;
     });
   }
 
