@@ -61,7 +61,6 @@ export class ListPage {
     this.filesArray.forEach(file => {
       this.mediaProvider.getLikesByFileId(file.file_id).subscribe(response => {
         this.amountOfLikes.push({like: response});
-        console.log(this.amountOfLikes);
       })
     });
   }
