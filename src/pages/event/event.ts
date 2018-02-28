@@ -26,9 +26,13 @@ export class EventPage {
   timeAdded: any;
   likes: any;
   likeamount: any;
+<<<<<<< HEAD
   isLiked: boolean = true;
   comments: any;
   commentsAmount: any;
+=======
+  isLiked: any;
+>>>>>>> 7f51ae7ff7d39c83c36cabf8f93574883b0dec51
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
     this.fileID = navParams.get('file_id');

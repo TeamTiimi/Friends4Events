@@ -15,6 +15,7 @@ export class MediaProvider {
   username: string;
   password: string;
   status: string;
+  isLiked: boolean;
   apiUrl = 'http://media.mw.metropolia.fi/wbma';
   nav = this.app.getActiveNav();
 
