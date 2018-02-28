@@ -90,7 +90,6 @@ export class MediaProvider {
         console.log(response);
       }, (error: HttpErrorResponse) => {
         console.log(error.error.message);
-        this.status = error.error.message;
       });
   }
 

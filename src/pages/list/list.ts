@@ -58,11 +58,18 @@ export class ListPage {
   }
 
   getLikes() {
+
     this.filesArray.forEach(file => {
       this.mediaProvider.getLikesByFileId(file.file_id).subscribe(response => {
         this.amountOfLikes.push({like: response});
+        console.log(this.searchItems);
       })
     });
+    /*
+    this.mediaProvider.getLikesByFileId().subscribe(response => {
+      this.amountOfLikes = response;
+    });
+    */
   }
 
   ionViewDidLoad() {
@@ -75,7 +82,6 @@ export class ListPage {
           this.filesArray = response;
 
           this.initializeItems();
-
           this.getLikes();
         });
       }, (error: HttpErrorResponse) => {
