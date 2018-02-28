@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import {HttpErrorResponse} from '@angular/common/http';
 import {LoginPage} from '../login/login';
 import {MediaProvider} from '../../providers/media/media';
+import {EventPage} from '../event/event';
+
 
 @Component({
   selector: 'page-list',
@@ -14,6 +16,7 @@ export class ListPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
+
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
 
@@ -23,7 +26,7 @@ export class ListPage {
     }, 2000);
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mediaProvider: MediaProvider) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -48,7 +51,6 @@ export class ListPage {
         this.mediaProvider.getNewFiles().subscribe(response => {
           console.log(response);
           this.filesArray = response;
-          console.log(this.mediaProvider.getUserByFileId(55))
         });
       }, (error: HttpErrorResponse) => {
         console.log(error);
@@ -61,10 +63,16 @@ export class ListPage {
     }
   }
 
-  itemTapped(event, item) {
+  itemTapped(event, item, file_id, title, description, user_id, filename, time_added) {
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
+    this.navCtrl.push(EventPage, {
+      item: item,
+      file_id: file_id,
+      title: title,
+      description: description,
+      user_id: user_id,
+      filename: filename,
+      time_added: time_added
     });
   }
 }

@@ -71,11 +71,27 @@ export class MediaProvider {
   }
 
   getNewFiles() {
-    return this.http.get(this.apiUrl + '/media?start=10&limit=10');
+    return this.http.get(this.apiUrl + '/media?start=1&limit=');
   }
 
-  getUserByFileId(fileId){
-    return this.http.get(this.apiUrl + '/media/' + fileId);
+  getUsernameByUserId(userId){
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+    return this.http.get('http://media.mw.metropolia.fi/wbma/users/' + userId, settings);
+  }
+
+  commentEvent (comment) {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+    return this.http.post(this.apiUrl + '/comments' , comment, settings);
+  }
+
+  getCommentsByFileId(fileId){
+    return this.http.get(this.apiUrl + '/comments/file/' + fileId);
   }
 
 }

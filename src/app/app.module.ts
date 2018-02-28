@@ -13,6 +13,8 @@ import {ProfilePage} from '../pages/profile/profile';
 import {LoginPage} from '../pages/login/login';
 import {RegisterPage} from '../pages/register/register';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {EventPage} from '../pages/event/event';
+import {CommentsPage} from '../pages/comments/comments';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     ListPage,
     LoginPage,
     ProfilePage,
-    RegisterPage
+    RegisterPage,
+    EventPage,
+    CommentsPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     ListPage,
     LoginPage,
     ProfilePage,
-    RegisterPage
+    RegisterPage,
+    EventPage,
+    CommentsPage
   ],
   providers: [
     StatusBar,
