@@ -24,6 +24,8 @@ export class EventPage {
   userName: any;
   fileName: any;
   timeAdded: any;
+  likes: any;
+  likeamount: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
     this.fileID = navParams.get('file_id');
@@ -41,6 +43,13 @@ export class EventPage {
     });
   }
 
+  getLikesByFileID(){
+    this.mediaProvider.getLikesByFileId(this.fileID).subscribe(response => {
+      console.log(response);
+      this.likes = response;
+      this.likeamount = this.likes.length;
+    });
+  }
 
   ionViewDidLoad() {
     console.log(this.fileID);
@@ -49,6 +58,7 @@ export class EventPage {
     console.log(this.userID);
     console.log(this.fileName);
     this.getUsernameByUserID();
+    this.getLikesByFileID();
   }
 
   itemTapped(event) {

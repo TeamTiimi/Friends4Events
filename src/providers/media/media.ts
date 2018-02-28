@@ -94,4 +94,8 @@ export class MediaProvider {
     return this.http.get(this.apiUrl + '/comments/file/' + fileId);
   }
 
+  getLikesByFileId (fileid){
+    return this.http.get(this.apiUrl + '/favourites/file/' + fileid)
+  }
+
 }
