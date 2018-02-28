@@ -1,5 +1,5 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HomePage} from '../../pages/home/home';
 import {App} from 'ionic-angular';
 
@@ -74,24 +74,25 @@ export class MediaProvider {
     return this.http.get(this.apiUrl + '/media?start=1&limit=');
   }
 
-  getUsernameByUserId(userId){
+  getUsernameByUserId(userId) {
     const settings = {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
     };
-    return this.http.get('http://media.mw.metropolia.fi/wbma/users/' + userId, settings);
+    return this.http.get('http://media.mw.metropolia.fi/wbma/users/' + userId,
+      settings);
   }
 
-  commentEvent (comment) {
+  commentEvent(comment) {
     console.log(comment);
     const settings = {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
     };
-    return this.http.post(this.apiUrl + '/comments' , comment, settings);
+    return this.http.post(this.apiUrl + '/comments', comment, settings);
   }
 
-  getCommentsByFileId(fileId){
+  getCommentsByFileId(fileId) {
     return this.http.get(this.apiUrl + '/comments/file/' + fileId);
   }
 
@@ -113,8 +114,19 @@ export class MediaProvider {
       });
   }
 
-  getLikesByFileId (fileid){
-    return this.http.get(this.apiUrl + '/favourites/file/' + fileid)
+  unLike(file_id: number) {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+    this.http.delete(this.apiUrl + '/favourites/file/' + file_id, settings).
+      subscribe(response => {
+        console.log(response);
+      });
+  }
+
+  getLikesByFileId(fileid) {
+    return this.http.get(this.apiUrl + '/favourites/file/' + fileid);
   }
 
 }
