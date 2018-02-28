@@ -83,6 +83,7 @@ export class MediaProvider {
   }
 
   commentEvent (comment) {
+    console.log(comment);
     const settings = {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),

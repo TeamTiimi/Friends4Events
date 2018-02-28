@@ -20,7 +20,7 @@ export class CommentsPage {
   fileID: number;
 
   comment: Comment = {
-    file_id: this.fileID,
+    file_id: null,
     comment: ''
   };
 
@@ -30,8 +30,8 @@ export class CommentsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommentsPage');
+    this.comment.file_id = this.fileID;
     console.log(this.fileID);
-    this.getCommentsByFileId();
   }
 
   getCommentsByFileId () {
